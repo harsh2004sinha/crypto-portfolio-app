@@ -1,4 +1,4 @@
-import Header from "./comp/Header";
+import { HeaderMegaMenu } from "./comp/HeaderMegaMenu";
 import Footer from "./comp/Footer";
 import "./globals.css";
 
@@ -23,7 +23,7 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider>
-          <Header />
+          <HeaderMegaMenu />
           {children}
           <Footer />
         </MantineProvider>
