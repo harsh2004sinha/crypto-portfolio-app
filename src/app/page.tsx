@@ -1,5 +1,11 @@
-import "./globals.css";
+import { Box, Title } from "@mantine/core";
 
 export default function Home() {
-  return <h1>Home</h1>;
+  return (
+    <Box>
+      <Title order={3} component="p">
+        Home
+      </Title>
+    </Box>
+  );
 }
