@@ -29,7 +29,8 @@ import {
   IconChevronDown,
 } from '@tabler/icons-react';
 import classes from '@/app/comp/css/HeaderMegaMenu.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { FaBitcoin } from "react-icons/fa";
 
 const mockdata = [
   {
@@ -67,6 +68,7 @@ const mockdata = [
 export function HeaderMegaMenu() {
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [linksOpened, setLinksOpened] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const theme = useMantineTheme();
 
   const toggleDrawer = () => setDrawerOpened((o) => !o);
@@ -91,11 +93,29 @@ export function HeaderMegaMenu() {
     </UnstyledButton>
   ));
 
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop) {
+        setHeaderVisible(false);
+      } else {
+        setHeaderVisible(true);
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Box pb={120}>
-      <header className={classes.header}>
+      <header className={`${classes.header} ${!headerVisible ? classes.headerhidden : ''}`}>
         <Group justify="space-between" h="100%">
-          <Group h="100%" gap={0} visibleFrom="sm">
+        <FaBitcoin size={50} style={{ width: '60px', marginLeft:'50px', color:'yellow'}} />
+          <Group h="70%" gap={10} visibleFrom="sm">
             <a href="#" className={classes.link}>
               Home
             </a>
@@ -147,15 +167,14 @@ export function HeaderMegaMenu() {
               Learn
             </a>
             <a href="#" className={classes.link}>
-              Academy
+              Contact Us
             </a>
           </Group>
 
           <Group visibleFrom="sm">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+            <Button>Log in</Button>
+            <Button styles={{ root: { color: 'pink' } }} variant="gradient" gradient={{ from: 'purple', to: 'blue', deg: 60 }}> Connect Wallet </Button>
           </Group>
-
           <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
         </Group>
       </header>
@@ -191,14 +210,14 @@ export function HeaderMegaMenu() {
             Learn
           </a>
           <a href="#" className={classes.link}>
-            Academy
+            Contact Us
           </a>
 
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+            <Button>Log in</Button>
+            <Button variant="gradient" gradient={{ from: 'purple', to: 'blue', deg: 60 }}> Connect Wallet </Button>
           </Group>
         </ScrollArea>
       </Drawer>

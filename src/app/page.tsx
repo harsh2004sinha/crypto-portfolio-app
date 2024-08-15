@@ -1,11 +1,11 @@
-import { Box, Title } from "@mantine/core";
+import { HeroImageRight } from "./comp/HeroImageRight";
+import HeroSectionTwo from "./comp/HeroSectionTwo";
 
 export default function Home() {
   return (
-    <Box>
-      <Title order={3} component="p">
-        Home
-      </Title>
-    </Box>
+    <>
+      <HeroImageRight/>
+      <HeroSectionTwo/>
+    </>
   );
 }

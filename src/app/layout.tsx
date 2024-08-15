@@ -1,5 +1,5 @@
 import { HeaderMegaMenu } from "./comp/HeaderMegaMenu";
-import Footer from "./comp/Footer";
+import { FooterLinks } from "./comp/FooterLinks";
 import "./globals.css";
 
 import "@mantine/core/styles.css";
@@ -25,7 +25,7 @@ export default function RootLayout({
         <MantineProvider>
           <HeaderMegaMenu />
           {children}
-          <Footer />
+          <FooterLinks />
         </MantineProvider>
       </body>
     </html>
