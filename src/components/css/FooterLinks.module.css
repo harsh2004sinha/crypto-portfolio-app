@@ -2,7 +2,6 @@
     padding-top: calc(var(--mantine-spacing-xl) * 2);
     padding-bottom: calc(var(--mantine-spacing-xl) * 2);
     background: linear-gradient(90deg, #5d89b5, #1a2525);
-    border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
   }
   
   .logo {
@@ -53,13 +52,13 @@
   
   .link {
     display: block;
-    color: #ffffff;
+    color: #e0dfdf;
     font-size: var(--mantine-font-size-sm);
     padding-top: 3px;
     padding-bottom: 3px;
   
     &:hover {
-      color: #ffffff;
+      color: #94f1f3;
     }
   }
   
@@ -68,7 +67,7 @@
     font-weight: 700;
     font-family: Greycliff CF, var(--mantine-font-family);
     margin-bottom: calc(var(--mantine-spacing-xs) / 2);
-    color: rgb(136, 132, 132)
+    color: rgb(86, 244, 255)
   }
   
   .afterFooter {

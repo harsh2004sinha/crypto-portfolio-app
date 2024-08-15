@@ -34,7 +34,7 @@ const testimonials = [
 
 function Reviews() {
   return (
-    <div className="h-[40rem] w-full relative flex flex-col items-center justify-center overflow-hidden" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
+    <div className="h-[40rem] w-full relative flex flex-col items-center justify-center overflow-hidden -mb-1" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}>
         <h2 className="text-3xl font-bold text-center mb-8 z-10 text-slate-300">Community Reviews</h2>
         <div className="flex justify-center w-full overflow-hidden px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-6xl">

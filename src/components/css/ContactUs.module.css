@@ -1,0 +1,62 @@
+/* Assuming your variables are defined in a :root or similar section */
+  
+  .wrapper {
+    height: 700px; /* Convert this to rem if needed, e.g., 25rem */
+    background: linear-gradient(90deg, #0a062b, #057df4, #4ac7c7);
+    padding: calc(var(--mantine-spacing-xl) * 2.5);
+    margin-top: -80px;
+    z-index: 500;
+    /* Media query for responsive padding */
+    @media (max-width: 576px) { /* Replace $mantine-breakpoint-sm with actual value */
+      padding: calc(var(--mantine-spacing-xl) * 1.5);
+    }
+  }
+  
+  .title {
+    font-family: Greycliff CF, var(--mantine-font-family);
+    color: var(--mantine-color-white);
+    line-height: 1;
+  }
+  
+  .description {
+    color: var(--mantine-color-blue-0);
+    max-width: 300px; /* Convert to rem if needed */
+    
+    @media (max-width: 576px) { /* Replace $mantine-breakpoint-sm with actual value */
+      max-width: 100%;
+    }
+  }
+  
+  .form {
+    background-color: var(--mantine-color-white);
+    padding: var(--mantine-spacing-xl);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--mantine-shadow-lg);
+  }
+  
+  .social {
+    color: var(--mantine-color-white);
+  }
+  
+  .social:hover {
+    color: var(--mantine-color-blue-1); /* Ensure var(--mantine-color-blue-1) is defined or replace with actual color */
+  }
+  
+  .input {
+    background-color: var(--mantine-color-white);
+    border-color: var(--mantine-color-gray-4);
+    color: var(--mantine-color-black);
+  }
+  
+  .input::placeholder {
+    color: var(--mantine-color-gray-5);
+  }
+  
+  .inputLabel {
+    color: var(--mantine-color-black);
+  }
+  
+  .control {
+    background-color: var(--mantine-color-blue-6);
+  }
+  

@@ -116,7 +116,7 @@ export function HeaderMegaMenu() {
         <Group justify="space-between" h="100%">
         <FaBitcoin size={50} style={{ width: '60px', marginLeft:'50px', color:'yellow'}} />
           <Group h="70%" gap={10} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <a href="/" className={classes.link}>
               Home
             </a>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -166,7 +166,7 @@ export function HeaderMegaMenu() {
             <a href="#" className={classes.link}>
               Learn
             </a>
-            <a href="#" className={classes.link}>
+            <a href="/contact-us" className={classes.link}>
               Contact Us
             </a>
           </Group>
@@ -209,7 +209,7 @@ export function HeaderMegaMenu() {
           <a href="#" className={classes.link}>
             Learn
           </a>
-          <a href="#" className={classes.link}>
+          <a href="/contact-us" className={classes.link}>
             Contact Us
           </a>
 

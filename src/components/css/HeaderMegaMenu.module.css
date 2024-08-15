@@ -4,6 +4,7 @@
   padding-right: var(--mantine-spacing-md);
   background: linear-gradient(90deg, #1a2525, #5d89b5);
   margin-bottom: -40px;
+  z-index: 1000;
 }
 
 .headerhidden {
