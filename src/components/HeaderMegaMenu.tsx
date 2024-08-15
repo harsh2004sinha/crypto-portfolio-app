@@ -28,7 +28,7 @@ import {
   IconCoin,
   IconChevronDown,
 } from '@tabler/icons-react';
-import classes from '@/app/comp/css/HeaderMegaMenu.module.css';
+import classes from './css/HeaderMegaMenu.module.css';
 import { useEffect, useState } from 'react';
 import { FaBitcoin } from "react-icons/fa";
 

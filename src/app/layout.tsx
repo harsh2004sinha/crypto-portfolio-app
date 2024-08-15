@@ -1,5 +1,5 @@
-import { HeaderMegaMenu } from "./comp/HeaderMegaMenu";
-import { FooterLinks } from "./comp/FooterLinks";
+import { HeaderMegaMenu } from "../components/HeaderMegaMenu"
+import { FooterLinks } from "../components/FooterLinks";
 import "./globals.css";
 
 import "@mantine/core/styles.css";

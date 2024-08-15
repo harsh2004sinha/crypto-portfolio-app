@@ -2,7 +2,7 @@
 
 import { Text, Container, ActionIcon, Group, rem } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import classes from "@/app/comp/css/FooterLinks.module.css"
+import classes from "./css/FooterLinks.module.css"
 import { FaBitcoin } from "react-icons/fa";
 
 const data = [

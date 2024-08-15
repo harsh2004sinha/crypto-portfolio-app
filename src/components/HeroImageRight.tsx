@@ -1,5 +1,6 @@
 import { Container, Title, Text, Button } from '@mantine/core';
-import classes from '@/app/comp/css/HeroImageRight.module.css'
+import classes from './css/HeroImageRight.module.css'
+import { Meteors } from "@/components/ui/meteors";
 
 export function HeroImageRight() {
   return (
@@ -35,6 +36,7 @@ export function HeroImageRight() {
               Get started
             </Button>
           </div>
+          <Meteors number={50}/>
         </div>
       </Container>
     </div>

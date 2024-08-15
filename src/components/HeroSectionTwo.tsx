@@ -1,13 +1,9 @@
 "use client"
 
-import { Meteors } from "@/components/ui/meteors";
-
 function HeroSectionTwo() {
   return (
     <div className="h-screen">
-      <div className=" w-full relative h-full">
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
-        <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden flex flex-col justify-end items-start">
+      <div className=" w-full relative h-full bg-no-repeat bg-center bg-cover" style={{backgroundImage: "url('https://media.istockphoto.com/id/1304093999/photo/bitcoin-e-commerce-concept-on-digital-screen.jpg?s=1024x1024&w=is&k=20&c=fRAfzv5Cdi9NE-6TLop7zW2icv9LsuTmfJxXtSc0M2c=')"}}>
  
           <h1 className="font-bold text-xl text-white mb-4 relative z-50">
             Meteors because they&apos;re cool
@@ -23,8 +19,7 @@ function HeroSectionTwo() {
             Explore
           </button>
 
-          <Meteors number={50} />
-        </div>
+          
       </div>
     </div>
   )
