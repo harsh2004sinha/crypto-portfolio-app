@@ -36,7 +36,7 @@ export function HeroImageRight() {
               Get started
             </Button>
           </div>
-          <Meteors number={50}/>
+          <Meteors number={100}/>
         </div>
       </Container>
     </div>
