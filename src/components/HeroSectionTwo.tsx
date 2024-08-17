@@ -3,23 +3,24 @@ import { Vortex } from "./ui/vortex"
 
 function HeroSectionTwo() {
   return (
-    <div className="h-screen">
+    <div className="h-screen -mt-2">
       <Vortex
         backgroundColor="black"
         className="flex items-center flex-col justify-center md:px-10 py-4 w-full h-full"
       >
-        <h2 className="text-white text-2xl md:text-6xl font-bold text-center">
-          The hell is this?
+        <h2 className="text-yellow-400 text-2xl md:text-6xl font-bold text-center">
+        Detailed Analytics
         </h2>
         <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center">
-          This is chemical burn. It&apos;ll hurt more than you&apos;ve ever been
-          burned and you&apos;ll have a scar.
+        Analyze your portfolio performance with detailed charts, historical data, and trend analysis.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
-            Order now
+          <button className="px-4 py-2 bg-blue-600 hover:bg-transparent transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
+            <a href="#">My Wallet</a>
           </button>
-          <button className="px-4 py-2  text-white ">Watch trailer</button>
+          <button className="px-4 py-2 hover:bg-blue-600 transition duration-200 rounded-lg shadow-[0px_2px_0px_0px_#FFFFFF40_inset] text-white ">
+            <a href="/watchlist">WatchList</a>
+          </button>
         </div>
       </Vortex>
     </div>

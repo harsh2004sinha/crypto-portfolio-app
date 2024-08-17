@@ -9,21 +9,20 @@ export function HeroImageRight() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              A{' '}
+              Track Your{' '}
               <Text
                 component="span"
                 inherit
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
               >
-                fully featured
+                Cryptocurrency
               </Text>{' '}
-              React components library
+              Portfolio in Real-Time
             </Title>
 
-            <Text className={classes.description} mt={30}>
-              Build fully functional accessible web applications with ease – Mantine includes more
-              than 100 customizable components and hooks to cover you in any situation
+            <Text className={classes.description} mt={30} c={'cyan'}>
+            Get live updates, detailed analytics, and personalized insights to manage your crypto investments effortlessly.
             </Text>
 
             <Button

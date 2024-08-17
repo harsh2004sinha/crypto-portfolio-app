@@ -63,7 +63,7 @@ export function FooterLinks() {
         <div className={classes.logo}>
         <FaBitcoin size={100} style={{ width: '100px', color:'yellow'}} />
           <Text size="xs" className={classes.description} c="white">
-            Build fully functional accessible web applications faster than ever
+          Monitor your cryptocurrency investments with real-time price updates and portfolio value changes.
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>

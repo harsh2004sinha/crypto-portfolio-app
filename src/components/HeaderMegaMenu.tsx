@@ -6,15 +6,11 @@ import {
   Button,
   UnstyledButton,
   Text,
-  SimpleGrid,
   ThemeIcon,
-  Anchor,
   Divider,
-  Center,
   Box,
   Burger,
   Drawer,
-  Collapse,
   ScrollArea,
   rem,
   useMantineTheme,
@@ -26,7 +22,6 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
-  IconChevronDown,
 } from '@tabler/icons-react';
 import classes from './css/HeaderMegaMenu.module.css';
 import { useEffect, useState } from 'react';
@@ -67,13 +62,12 @@ const mockdata = [
 
 export function HeaderMegaMenu() {
   const [drawerOpened, setDrawerOpened] = useState(false);
-  const [linksOpened, setLinksOpened] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
   const theme = useMantineTheme();
 
   const toggleDrawer = () => setDrawerOpened((o) => !o);
   const closeDrawer = () => setDrawerOpened(false);
-  const toggleLinks = () => setLinksOpened((o) => !o);
+
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
@@ -114,16 +108,13 @@ export function HeaderMegaMenu() {
     <Box pb={120}>
       <header className={`${classes.header} ${!headerVisible ? classes.headerhidden : ''}`}>
         <Group justify="space-between" h="100%">
-          <FaBitcoin size={50} style={{ width: '60px', marginLeft: '50px', color: 'yellow' }} />
+          <FaBitcoin size={50} style={{ width: '60px', marginLeft: '10px', color: 'yellow' }} />
           <Group h="70%" gap={10} visibleFrom="sm">
             <a href="/" className={classes.link}>
               Home
             </a>
-            <a href="/markets" className={classes.link}>
-              Market
-            </a>
-            <a href="#" className={classes.link}>
-              Learn
+            <a href="/watchlist" className={classes.link}>
+              WatchList
             </a>
             <a href="/contact-us" className={classes.link}>
               Contact Us
@@ -151,30 +142,24 @@ export function HeaderMegaMenu() {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
         hiddenFrom="sm"
+        c={'blue'}
         zIndex={1000000}
       >
-        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
-          <Divider my="sm" />
+        <ScrollArea
+          h={`calc(100vh - ${rem(80)})`}
+          mx="-md"
+          style={{
+            background: 'linear-gradient(90deg, #1a2525, #5d89b5)',
+          }}
+        >
+          <Divider my="md" />
 
-          <a href="#" className={classes.link}>
+          <a href="/" className={classes.link}>
             Home
           </a>
-          <UnstyledButton className={classes.link} onClick={toggleLinks}>
-            <Center inline>
-              <Box component="span" mr={5}>
-                Market
-              </Box>
-              <IconChevronDown
-                style={{ width: rem(16), height: rem(16) }}
-                color={theme.colors.blue[6]}
-              />
-            </Center>
-          </UnstyledButton>
-          <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
-            Learn
+          <a href="/watchlist" className={classes.link}>
+            WatchList
           </a>
           <a href="/contact-us" className={classes.link}>
             Contact Us
