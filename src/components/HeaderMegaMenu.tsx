@@ -3,37 +3,23 @@
 import { useContext } from "react";
 import { LoginContext } from "@/context/login.context";
 
-interface Userss {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  id: string;
-}
-
 import {
-  HoverCard,
   Group,
   Button,
-  UnstyledButton,
-  Text,
-  ThemeIcon,
   Divider,
   Box,
   Burger,
   Drawer,
   ScrollArea,
   rem,
-  useMantineTheme,
+  SimpleGrid,
+  Anchor,
+  HoverCard,
+  Center,
+  Text,
+  TextInput,
+  NumberInput,
 } from "@mantine/core";
-import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
-} from "@tabler/icons-react";
 import classes from "./css/HeaderMegaMenu.module.css";
 import { useEffect, useState } from "react";
 import { FaBitcoin } from "react-icons/fa";
@@ -92,9 +78,8 @@ export function HeaderMegaMenu() {
   return (
     <Box pb={120}>
       <header
-        className={`${classes.header} ${
-          !headerVisible ? classes.headerhidden : ""
-        }`}
+        className={`${classes.header} ${!headerVisible ? classes.headerhidden : ""
+          }`}
       >
         <Group justify="space-between" h="100%">
           <FaBitcoin
@@ -157,7 +142,7 @@ export function HeaderMegaMenu() {
   );
 
   function Logins() {
-    
+
     return (
       <Group justify="center" grow pb="xl" px="md">
         <Button>
@@ -195,6 +180,41 @@ function ConnectWalletSmall() {
 
   return (
     <Group justify="center" grow pb="xl" px="md">
+      <HoverCard width={400} position="bottom" radius="md" shadow="md" withinPortal zIndex={1000001}>
+        <HoverCard.Target>
+          <Button>
+            Send Token
+          </Button>
+        </HoverCard.Target>
+
+        <HoverCard.Dropdown style={{ overflow: 'hidden', background:'white'}}>
+          <Group justify="space-between" px="md">
+            <Text fw={500}>Send Money</Text>
+          </Group>
+
+          <Divider my="sm" />
+
+          <div style={{ padding: '0 16px' }}>
+            <form>
+              <Group>
+                <TextInput
+                width={500}
+                  label="Account ID"
+                  placeholder="Enter account ID"
+                  required
+                />
+                <NumberInput
+                  label="Amount to Send"
+                  placeholder="Enter amount"
+                  min={0}
+                  required
+                />
+                <Button type="submit" variant="filled">Send</Button>
+              </Group>
+            </form>
+          </div>
+        </HoverCard.Dropdown>
+      </HoverCard>
       <Button
         variant="gradient"
         gradient={{ from: "purple", to: "blue", deg: 60 }}
@@ -228,6 +248,41 @@ function ConnectWalletBig() {
   }
   return (
     <Group visibleFrom="sm">
+      <HoverCard width={400} position="bottom" radius="md" shadow="md" withinPortal>
+        <HoverCard.Target>
+          <Button>
+            Send Token
+          </Button>
+        </HoverCard.Target>
+
+        <HoverCard.Dropdown style={{ overflow: 'hidden', background:'white'}}>
+          <Group justify="space-between" px="md">
+            <Text fw={500}>Send Money</Text>
+          </Group>
+
+          <Divider my="sm" />
+
+          <div style={{ padding: '0 16px' }}>
+            <form>
+              <Group>
+                <TextInput
+                width={500}
+                  label="Account ID"
+                  placeholder="Enter account ID"
+                  required
+                />
+                <NumberInput
+                  label="Amount to Send"
+                  placeholder="Enter amount"
+                  min={0}
+                  required
+                />
+                <Button type="submit" variant="filled">Send</Button>
+              </Group>
+            </form>
+          </div>
+        </HoverCard.Dropdown>
+      </HoverCard>
       <Button
         styles={{ root: { color: "pink" } }}
         variant="gradient"
@@ -243,7 +298,7 @@ function ConnectWalletBig() {
 }
 
 function LoginSign() {
-  function locale(){
+  function locale() {
     console.log(localStorage);
   }
   return (
