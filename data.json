@@ -1,0 +1,49 @@
+{
+    "data" : [
+        {
+            "name" : "BitCoin",
+            "price" : "$59,519.34",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/BTC.png"
+        },
+        {
+            "name" : "Ethereum",
+            "price" : "$2,650.13",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/ETH.png"
+        },
+        {
+            "name" : "TetherUS",
+            "price" : "$1.00",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/USDT.png"
+        },
+        {
+            "name" : "BNB",
+            "price" : "$536.60",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/BNB.png"
+        },
+        {
+            "name" : "Solana",
+            "price" : "$144.91",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/SOL.png"
+        },
+        {
+            "name" : "USD Coin",
+            "price" : "$0.9998",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/USDC.png"
+        },
+        {
+            "name" : "Ripple",
+            "price" : "$0.5709",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/XRP.png"
+        },
+        {
+            "name" : "TonCoin",
+            "price" : "$6.63",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/TON.png"
+        },
+        {
+            "name" : "DogeCoin",
+            "price" : "$0.10241",
+            "url": "https://bin.bnbstatic.com/static/assets/logos/DOGE.png"
+        }
+    ]
+}
