@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import { Vortex } from "./ui/vortex"
 
 function HeroSectionTwo() {
@@ -16,10 +17,7 @@ function HeroSectionTwo() {
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
           <button className="px-4 py-2 bg-blue-600 hover:bg-transparent transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
-            <a href="#">My Wallet</a>
-          </button>
-          <button className="px-4 py-2 hover:bg-blue-600 transition duration-200 rounded-lg shadow-[0px_2px_0px_0px_#FFFFFF40_inset] text-white ">
-            <a href="/watchlist">WatchList</a>
+            <Link href="#">WatchList</Link>
           </button>
         </div>
       </Vortex>

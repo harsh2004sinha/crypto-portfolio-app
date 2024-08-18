@@ -84,9 +84,7 @@ export function HeaderMegaMenu() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            <Link href="/watchlist" className={classes.link}>
-              WatchList
-            </Link>
+            {user.firstName === "" ? null : <Link href={'/watchlist'} className={classes.link}>WatchList</Link>}
             <Link href="/contact-us" className={classes.link}>
               Contact Us
             </Link>
