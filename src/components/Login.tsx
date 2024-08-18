@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import { Vortex } from "./ui/vortex";
-import { Group } from "@mantine/core";
+import { FormEvent, useContext } from "react";
+import { LoginContext } from "@/context/login.context";
+import { useRouter } from "next/navigation"; // Use this for client-side navigation
 
+// Gradient bottom span
 const BottomGradient = () => {
   return (
     <>
@@ -15,6 +18,7 @@ const BottomGradient = () => {
   );
 };
 
+// Container for label and input
 const LabelInputContainer = ({
   children,
   className,
@@ -29,15 +33,67 @@ const LabelInputContainer = ({
   );
 };
 
+// User type definition
+interface Userss {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  id: string;
+}
+
+// Sign-up form component
 function SignUp() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const context = useContext(LoginContext);
+  const router = useRouter(); // Initialize useRouter
+
+  if (!context) {
+    throw new Error("SignUp must be used within a LoginContextProvider");
+  }
+
+  const { user, setUser } = context;
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      const res = await fetch("/api/getuser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      // Parse the JSON response
+      const userData: Userss = await res.json();
+
+      // Update the context with the fetched user data
+      setUser(userData);
+      localStorage.setItem("userkadata",JSON.stringify(userData))
+
+      // Redirect to the home page
+      router.push('/'); // Use router.push for client-side redirection
+
+      console.log("Form submitted and user updated:");
+    } catch (error) {
+      console.error("Error during form submission:", error);
+    }
   };
+
   return (
     <Vortex
       backgroundColor="black"
-      className="flex items-center flex-col justify-center md:px-10 w-full h-screen -mt-20">
+      className="flex items-center flex-col justify-center md:px-10 w-full h-screen -mt-20"
+    >
       <div className="max-w-md w-full mx-auto rounded-2xl md:rounded-2xl p-8 md:p-12 shadow-input bg-white dark:bg-black">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
           Welcome to My-Crypto-App
@@ -45,11 +101,21 @@ function SignUp() {
         <form className="my-8" onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+            <Input
+              id="email"
+              name="email"
+              placeholder="projectmayhem@fc.com"
+              type="email"
+            />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" placeholder="••••••••" type="password" />
+            <Input
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              type="password"
+            />
           </LabelInputContainer>
 
           <button
@@ -67,4 +133,4 @@ function SignUp() {
   );
 }
 
-export default SignUp
+export default SignUp;

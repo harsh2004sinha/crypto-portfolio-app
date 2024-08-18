@@ -1,4 +1,15 @@
-"use client"
+"use client";
+
+import { useContext } from "react";
+import { LoginContext } from "@/context/login.context";
+
+interface Userss {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  id: string;
+}
 
 import {
   HoverCard,
@@ -14,7 +25,7 @@ import {
   ScrollArea,
   rem,
   useMantineTheme,
-} from '@mantine/core';
+} from "@mantine/core";
 import {
   IconNotification,
   IconCode,
@@ -22,76 +33,50 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
-} from '@tabler/icons-react';
-import classes from './css/HeaderMegaMenu.module.css';
-import { useEffect, useState } from 'react';
+} from "@tabler/icons-react";
+import classes from "./css/HeaderMegaMenu.module.css";
+import { useEffect, useState } from "react";
 import { FaBitcoin } from "react-icons/fa";
-
-const mockdata = [
-  {
-    icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
-  },
-  {
-    icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
-  },
-  {
-    icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
-  },
-  {
-    icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
-  },
-  {
-    icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
-  },
-  {
-    icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
-  },
-];
+import Link from "next/link";
 
 export function HeaderMegaMenu() {
+  const context = useContext(LoginContext);
+  if (!context) {
+    throw new Error("SignUp must be used within a LoginContextProvider");
+  }
+
+  const { user, setUser } = context;
+
+  useEffect(() => {
+    // Retrieve and parse user data from localStorage
+    const userData = localStorage.getItem("userkadata");
+    if (userData) {
+      try {
+        const parsedUserData = JSON.parse(userData);
+        // Do something with parsedUserData
+        console.log(parsedUserData);
+        setUser(parsedUserData);
+      } catch (error) {
+        console.error("Failed to parse user data from localStorage", error);
+      }
+    }
+  }, []);
+
+
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
-  const theme = useMantineTheme();
+
 
   const toggleDrawer = () => setDrawerOpened((o) => !o);
   const closeDrawer = () => setDrawerOpened(false);
 
-
-  const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group wrap="nowrap" align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
-
   useEffect(() => {
+    console.log(user);
     let lastScrollTop = 0;
 
     const handleScroll = () => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScroll =
+        window.pageYOffset || document.documentElement.scrollTop;
       if (currentScroll > lastScrollTop) {
         setHeaderVisible(false);
       } else {
@@ -100,40 +85,39 @@ export function HeaderMegaMenu() {
       lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <Box pb={120}>
-      <header className={`${classes.header} ${!headerVisible ? classes.headerhidden : ''}`}>
+      <header
+        className={`${classes.header} ${
+          !headerVisible ? classes.headerhidden : ""
+        }`}
+      >
         <Group justify="space-between" h="100%">
-          <FaBitcoin size={50} style={{ width: '60px', marginLeft: '10px', color: 'yellow' }} />
+          <FaBitcoin
+            size={50}
+            style={{ width: "60px", marginLeft: "10px", color: "yellow" }}
+          />
           <Group h="70%" gap={10} visibleFrom="sm">
-            <a href="/" className={classes.link}>
+            <Link href="/" className={classes.link}>
               Home
-            </a>
-            <a href="/watchlist" className={classes.link}>
+            </Link>
+            <Link href="/watchlist" className={classes.link}>
               WatchList
-            </a>
-            <a href="/contact-us" className={classes.link}>
+            </Link>
+            <Link href="/contact-us" className={classes.link}>
               Contact Us
-            </a>
+            </Link>
           </Group>
-
-          <Group visibleFrom="sm">
-            <Button>
-              <a href="/login">
-                Login
-              </a>
-            </Button>
-            <Button styles={{ root: { color: 'pink' } }} variant="gradient" gradient={{ from: 'purple', to: 'blue', deg: 60 }}>
-              <a href="/signup">
-                Connect Wallet
-              </a>
-            </Button>
-          </Group>
-          <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+          {user.firstName === "" ? <LoginSign /> : <ConnectWalletBig />}
+          <Burger
+            opened={drawerOpened}
+            onClick={toggleDrawer}
+            hiddenFrom="sm"
+          />
         </Group>
       </header>
 
@@ -143,44 +127,137 @@ export function HeaderMegaMenu() {
         size="100%"
         padding="md"
         hiddenFrom="sm"
-        c={'blue'}
+        c={"blue"}
         zIndex={1000000}
       >
         <ScrollArea
           h={`calc(100vh - ${rem(80)})`}
           mx="-md"
           style={{
-            background: 'linear-gradient(90deg, #1a2525, #5d89b5)',
+            background: "linear-gradient(90deg, #1a2525, #5d89b5)",
           }}
         >
           <Divider my="md" />
 
-          <a href="/" className={classes.link}>
+          <Link href="/" className={classes.link}>
             Home
-          </a>
-          <a href="/watchlist" className={classes.link}>
+          </Link>
+          <Link href="/watchlist" className={classes.link}>
             WatchList
-          </a>
-          <a href="/contact-us" className={classes.link}>
+          </Link>
+          <Link href="/contact-us" className={classes.link}>
             Contact Us
-          </a>
+          </Link>
 
           <Divider my="sm" />
-
-          <Group justify="center" grow pb="xl" px="md">
-            <Button>
-              <a href="/login">
-                Login
-              </a>
-            </Button>
-            <Button variant="gradient" gradient={{ from: 'purple', to: 'blue', deg: 60 }}>
-              <a href="/signup">
-                Connect Wallet
-              </a>
-            </Button>
-          </Group>
+          {user.firstName === "" ? <Logins /> : <ConnectWalletSmall />}
         </ScrollArea>
       </Drawer>
     </Box>
+  );
+
+  function Logins() {
+    
+    return (
+      <Group justify="center" grow pb="xl" px="md">
+        <Button>
+          <Link href="/login">Login</Link>
+        </Button>
+        <Button
+          variant="gradient"
+          gradient={{ from: "purple", to: "blue", deg: 60 }}
+        >
+          <Link href="/signup">Signup</Link>
+        </Button>
+      </Group>
+    );
+  }
+}
+
+function ConnectWalletSmall() {
+  const context = useContext(LoginContext);
+
+  if (!context) {
+    throw new Error("SignUp must be used within a LoginContextProvider");
+  }
+
+  const { user, setUser } = context;
+  function log() {
+    localStorage.clear();
+    setUser({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      id: "",
+    });
+  }
+
+  return (
+    <Group justify="center" grow pb="xl" px="md">
+      <Button
+        variant="gradient"
+        gradient={{ from: "purple", to: "blue", deg: 60 }}
+      >
+        <Link href="#">Connect Wallet</Link>
+      </Button>
+      <Button onClick={log}>
+        <Link href="/">Logout</Link>
+      </Button>
+    </Group>
+  );
+}
+
+function ConnectWalletBig() {
+  const context = useContext(LoginContext);
+
+  if (!context) {
+    throw new Error("SignUp must be used within a LoginContextProvider");
+  }
+
+  const { user, setUser } = context;
+  function log() {
+    localStorage.clear()
+    setUser({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      id: "",
+    });
+  }
+  return (
+    <Group visibleFrom="sm">
+      <Button
+        styles={{ root: { color: "pink" } }}
+        variant="gradient"
+        gradient={{ from: "purple", to: "blue", deg: 60 }}
+      >
+        <Link href="#">Connect Wallet</Link>
+      </Button>
+      <Button onClick={log}>
+        <Link href="/">Logout</Link>
+      </Button>
+    </Group>
+  );
+}
+
+function LoginSign() {
+  function locale(){
+    console.log(localStorage);
+  }
+  return (
+    <Group visibleFrom="sm">
+      <Button onClick={locale}>
+        <Link href="/login">Login</Link>
+      </Button>
+      <Button
+        styles={{ root: { color: "pink" } }}
+        variant="gradient"
+        gradient={{ from: "purple", to: "blue", deg: 60 }}
+      >
+        <Link href="/signup">Signup</Link>
+      </Button>
+    </Group>
   );
 }

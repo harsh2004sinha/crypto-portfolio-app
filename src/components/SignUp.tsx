@@ -1,14 +1,12 @@
-"use client"
+"use client";
 
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
 import { Vortex } from "./ui/vortex";
+import { LoginContext } from "@/context/login.context";
+import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 const BottomGradient = () => {
   return (
@@ -18,6 +16,8 @@ const BottomGradient = () => {
     </>
   );
 };
+
+// import { addUser } from "@/backend/user.methods";
 
 const LabelInputContainer = ({
   children,
@@ -33,9 +33,58 @@ const LabelInputContainer = ({
   );
 };
 
+interface Userss {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  id: string;
+}
+
+// Sign-up form component
+
 function SignUp() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const context = useContext(LoginContext);
+  const router = useRouter();
+
+  if (!context) {
+    throw new Error("SignUp must be used within a LoginContextProvider");
+  }
+
+  const { user, setUser } = context;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const firstName: String = (
+      document.getElementById("firstname") as HTMLInputElement
+    ).value;
+    const lastName: String = (
+      document.getElementById("lastname") as HTMLInputElement
+    ).value;
+    const email: String = (document.getElementById("email") as HTMLInputElement)
+      .value;
+    const password: String = (
+      document.getElementById("password") as HTMLInputElement
+    ).value;
+
+    const res = await fetch("/api/users", {
+      method: "post",
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      }),
+    });
+    // Parse the JSON response
+    const userData: Userss = await res.json();
+
+    // Update the context with the fetched user data
+    setUser(userData);
+    localStorage.setItem("userkadata", JSON.stringify(userData));
+
+    router.push("/");
+
     console.log("Form submitted");
   };
   return (
@@ -70,15 +119,6 @@ function SignUp() {
             <Input id="password" placeholder="••••••••" type="password" />
           </LabelInputContainer>
 
-          <LabelInputContainer>
-            <Label htmlFor="twitterpassword">Wallet Id</Label>
-            <Input
-              id="twitterpassword"
-              placeholder="••••••••"
-              type="text" // Fixed type attribute here
-            />
-          </LabelInputContainer>
-
           <button
             className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-12 md:h-14 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
@@ -91,8 +131,7 @@ function SignUp() {
         </form>
       </div>
     </Vortex>
-
   );
 }
 
-export default SignUp
+export default SignUp;

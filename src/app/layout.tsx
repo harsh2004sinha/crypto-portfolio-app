@@ -1,6 +1,8 @@
-import { HeaderMegaMenu } from "../components/HeaderMegaMenu"
+import { HeaderMegaMenu } from "../components/HeaderMegaMenu";
 import { FooterLinks } from "../components/FooterLinks";
 import "./globals.css";
+
+import LoginContextProvider from "@/context/login.context";
 
 import "@mantine/core/styles.css";
 
@@ -23,9 +25,11 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider>
-          <HeaderMegaMenu />
-          {children}
-          <FooterLinks />
+          <LoginContextProvider>
+            <HeaderMegaMenu />
+            {children}
+            <FooterLinks />
+          </LoginContextProvider>
         </MantineProvider>
       </body>
     </html>
