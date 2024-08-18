@@ -1,7 +1,8 @@
 "use client";
 
-import { useContext } from "react";
+import { FormEvent, useContext } from "react";
 import { LoginContext } from "@/context/login.context";
+import { ethers } from 'ethers'
 
 import {
   Group,
@@ -187,7 +188,7 @@ function ConnectWalletSmall() {
           </Button>
         </HoverCard.Target>
 
-        <HoverCard.Dropdown style={{ overflow: 'hidden', background:'white'}}>
+        <HoverCard.Dropdown style={{ overflow: 'hidden', background: 'white' }}>
           <Group justify="space-between" px="md">
             <Text fw={500}>Send Money</Text>
           </Group>
@@ -198,7 +199,7 @@ function ConnectWalletSmall() {
             <form>
               <Group>
                 <TextInput
-                width={500}
+                  width={500}
                   label="Account ID"
                   placeholder="Enter account ID"
                   required
@@ -229,6 +230,24 @@ function ConnectWalletSmall() {
 }
 
 function ConnectWalletBig() {
+
+  const connectWallet = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        console.log(accounts);
+        localStorage.setItem("walletid", accounts[0])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    else {
+      console.log("Metamask not installed");
+    }
+  }
+
   const context = useContext(LoginContext);
 
   if (!context) {
@@ -246,6 +265,27 @@ function ConnectWalletBig() {
       id: "",
     });
   }
+
+  const sendtoken = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+
+    console.log(provider, await signer);
+    const balance = await provider.getBalance("ethers.eth");
+    console.log(balance);
+
+    let tx = (await signer).sendTransaction({
+      to: (document.getElementById("accId") as HTMLInputElement).value,
+      value: ethers.parseEther((document.getElementById("amtId") as HTMLInputElement).value),
+      gasPrice: "5000000",
+    });
+
+    console.log(tx);
+  }
+
+
   return (
     <Group visibleFrom="sm">
       <HoverCard width={400} position="bottom" radius="md" shadow="md" withinPortal>
@@ -255,7 +295,7 @@ function ConnectWalletBig() {
           </Button>
         </HoverCard.Target>
 
-        <HoverCard.Dropdown style={{ overflow: 'hidden', background:'white'}}>
+        <HoverCard.Dropdown style={{ overflow: 'hidden', background: 'white' }}>
           <Group justify="space-between" px="md">
             <Text fw={500}>Send Money</Text>
           </Group>
@@ -263,16 +303,18 @@ function ConnectWalletBig() {
           <Divider my="sm" />
 
           <div style={{ padding: '0 16px' }}>
-            <form>
+            <form onSubmit={sendtoken}>
               <Group>
                 <TextInput
-                width={500}
+                  width={500}
                   label="Account ID"
+                  id="accId"
                   placeholder="Enter account ID"
                   required
                 />
                 <NumberInput
                   label="Amount to Send"
+                  id="amtId"
                   placeholder="Enter amount"
                   min={0}
                   required
@@ -284,11 +326,12 @@ function ConnectWalletBig() {
         </HoverCard.Dropdown>
       </HoverCard>
       <Button
+        onClick={connectWallet}
         styles={{ root: { color: "pink" } }}
         variant="gradient"
         gradient={{ from: "purple", to: "blue", deg: 60 }}
       >
-        <Link href="#">Connect Wallet</Link>
+        Connect Wallet
       </Button>
       <Button onClick={log}>
         <Link href="/">Logout</Link>
