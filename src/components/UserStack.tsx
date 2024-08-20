@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Avatar, Table, Group, Text, ActionIcon, Menu, rem } from '@mantine/core';
 import { IconPencil, IconDots, IconTrash } from '@tabler/icons-react';
 import resData from '@/app/market/cryptoList';
-import { url } from 'inspector';
 
 // Define the type for symbol-to-image mapping with an index signature
 interface SymbolToImageMap {
