@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First install all dependencies with command npm install
+
+Then add a .env file globally with details:-
+.env ->
+MONGODB_URI="Your MongoDB Project URL"
+
+Then, run the development server:
 
 ```bash
 npm run dev
