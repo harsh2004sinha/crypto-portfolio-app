@@ -57,7 +57,7 @@ function TodoItem({ todo }: TodoItemProps) {
     >
 {
     symbolToImag.map((e) => {
-        if(e[0]===todoMsg) return <ListItem imageurl={e[2]} name={e[1]}/>;
+        if(e[0]===todoMsg) return <ListItem key={e[0]} imageurl={e[2]} name={e[1]}/>;
     })
 }
 

@@ -44,7 +44,7 @@ function TodoForm() {
                 className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
             >
                 <option value="" disabled className='text-slate-50'>Select your token</option>
-                {symbolToName.map((name) => <option value={name[0]} className='text-slate-900'>{name[1]}</option>)}
+                {symbolToName.map((name) => <option key={name[0]} value={name[0]} className='text-slate-900'>{name[1]}</option>)}
             </select>
             <button type="submit" className="rounded-r-lg px-3 py-1 bg-green-600 text-white shrink-0">
                 Add
