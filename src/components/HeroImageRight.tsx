@@ -1,5 +1,5 @@
 import { Container, Title, Text, Button } from '@mantine/core';
-import classes from './css/HeroImageRight.module.css'
+import classes from './css/HeroImageRight.module.css';
 import { Meteors } from "@/components/ui/meteors";
 
 export function HeroImageRight() {
@@ -25,15 +25,6 @@ export function HeroImageRight() {
             Get live updates, detailed analytics, and personalized insights to manage your crypto investments effortlessly.
             </Text>
 
-            <Button
-              variant="gradient"
-              gradient={{ from: 'pink', to: 'yellow' }}
-              size="xl"
-              className={classes.control}
-              mt={40}
-            >
-              Get started
-            </Button>
           </div>
           <Meteors number={100}/>
         </div>
