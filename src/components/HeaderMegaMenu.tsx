@@ -84,6 +84,9 @@ export function HeaderMegaMenu() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
+            <Link href="/market" className={classes.link}>
+              Market
+            </Link>
             {user.firstName === "" ? null : <Link href={'/watchlist'} className={classes.link}>WatchList</Link>}
             <Link href="/contact-us" className={classes.link}>
               Contact Us
@@ -121,6 +124,9 @@ export function HeaderMegaMenu() {
           </Link>
           <Link href="/watchlist" className={classes.link}>
             WatchList
+          </Link>
+          <Link href="/market" className={classes.link}>
+            Markets
           </Link>
           <Link href="/contact-us" className={classes.link}>
             Contact Us
@@ -172,7 +178,9 @@ function ConnectWalletSmall() {
 
   return (
     <Group justify="center" grow pb="xl" px="md">
-      <SendToken/>
+      {localStorage.getItem("walletid") === null ?
+      <SendToken name = "Connect Wallet"/> : 
+      <SendToken name = {localStorage.getItem("walletid")?.substring(0,6) + "..."}/>}
       <Button onClick={log}>
         <Link href="/">Logout</Link>
       </Button>
@@ -203,7 +211,9 @@ function ConnectWalletBig() {
 
   return (
     <Group visibleFrom="sm">
-      <SendToken/>
+      {localStorage.getItem("walletid") === null ?
+      <SendToken name = "Connect Wallet"/> : 
+      <SendToken name = {localStorage.getItem("walletid")?.substring(0,6) + "..."}/>}
       <Button onClick={log}>
         <Link href="/">Logout</Link>
       </Button>

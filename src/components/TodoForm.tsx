@@ -1,6 +1,28 @@
 import React, { FormEvent, useState } from 'react'
 import { useTodo } from '../context/TodoContext';
 
+const symbolToName = [
+    ["BTC", "Bitcoin"], [
+        "ETH", "Ethereum"], [
+        "SOL", "Solana"], [
+        "USDC", "USD Coin"], [
+        "XRP", "XRP"], [
+        "USDT", "Tether"], [
+        "PEPE", "Pepe"], [
+        "BNB", "Binance Coin"], [
+        "FDUSD", "First Digital USD"], [
+        "DOGE", "Doge Coin"], [
+        "TRX", "TRON"], [
+        "WIF", "dogwifhat"], [
+        "AAVE", "Aave"], [
+        "SUI", "Sui"], [
+        "RARE", "Super Rare"], [
+        "FLOKI", "Floki Inu"], [
+        "SYS", "Syscoin"], [
+        "FET", "Fetch.AI"], [
+        "NOT", "NotCoin"]
+];
+
 function TodoForm() {
     const [selectedToken, setSelectedToken] = useState("")
     const { addTodo } = useTodo()
@@ -22,15 +44,7 @@ function TodoForm() {
                 className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
             >
                 <option value="" disabled className='text-slate-50'>Select your token</option>
-                <option value="BitCoin" className='text-slate-900'>BitCoin</option>
-                <option value="Ethereum" className='text-slate-900'>Ethereum</option>
-                <option value="TetherUS" className='text-slate-900'>ThetherUS</option>
-                <option value="BNB" className='text-slate-900'>BNB</option>
-                <option value="Solana" className='text-slate-900'>SOL</option>
-                <option value="USD Coin" className='text-slate-900'>USD Coin</option>
-                <option value="Ripple" className='text-slate-900'>Ripple</option>
-                <option value="TonCoin" className='text-slate-900'>Ton Coin</option>
-                <option value="DogeCoin" className='text-slate-900'>Dogecoin</option>
+                {symbolToName.map((name) => <option value={name[0]} className='text-slate-900'>{name[1]}</option>)}
             </select>
             <button type="submit" className="rounded-r-lg px-3 py-1 bg-green-600 text-white shrink-0">
                 Add

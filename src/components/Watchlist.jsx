@@ -5,6 +5,8 @@ import { TodoProvider } from '@/context'
 import TodoForm from '@/components/TodoForm'
 import TodoItem from '@/components/TodoItem'
 import { Vortex } from './ui/vortex'
+import styled from 'styled-components';
+
 
 function Watchlist() {
     const [todos, setTodos] = useState([])
@@ -52,18 +54,32 @@ function Watchlist() {
                     <div className="mb-4">
                         <TodoForm />
                     </div>
-                    <div className="flex flex-wrap gap-y-3">
+                    {todos.length===0 ? null : <ScrollableContainer className='flex-col'>
                         {todos.map((todo) => (
                             <div key={todo.id} className='w-full'>
                                 <TodoItem todo={todo} />
                             </div>
                         ))}
-                    </div>
+                    </ScrollableContainer>}
+                    
                 </div>
                 </Vortex>
             </div>
         </TodoProvider>
     )
 }
+
+const ScrollableContainer = styled.div`
+  display: flex;
+  gap: 12px; // Equivalent to Tailwind's gap-y-3
+  overflow-y: scroll;
+  height: 24rem; // Equivalent to Tailwind's h-96
+  -ms-overflow-style: none; // For Internet Explorer and Edge
+  scrollbar-width: none; // For Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // For Chrome, Safari, and Opera
+  }
+`;
 
 export default Watchlist

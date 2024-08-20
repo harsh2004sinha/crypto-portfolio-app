@@ -1,0 +1,21 @@
+const symbolToImage = {
+    "BTC": "https://bin.bnbstatic.com/static/assets/logos/BTC.png",
+    "ETH": "https://bin.bnbstatic.com/static/assets/logos/ETH.png",
+    "SOL": "https://bin.bnbstatic.com/static/assets/logos/SOL.png",
+    "USDC": "https://bin.bnbstatic.com/static/assets/logos/USDC.png",
+    "XRP": "https://bin.bnbstatic.com/static/assets/logos/XRP.png",
+    "USDT": "https://bin.bnbstatic.com/static/assets/logos/USDT.png",
+    "PEPE": "https://bin.bnbstatic.com/static/assets/logos/PEPE.png",
+    "BNB": "https://bin.bnbstatic.com/static/assets/logos/BNB.png",
+    "FDUSD": "https://bin.bnbstatic.com/static/assets/logos/FDUSD.png",
+    "DOGE": "https://bin.bnbstatic.com/static/assets/logos/DOGE.png",
+    "TRX": "https://bin.bnbstatic.com/static/assets/logos/TRX.png",
+    "WIF": "https://bin.bnbstatic.com/static/assets/logos/WIF.png",
+    "AAVE": "https://bin.bnbstatic.com/static/assets/logos/AAVE.png",
+    "SUI": "https://bin.bnbstatic.com/static/assets/logos/SUI.png",
+    "RARE": "https://bin.bnbstatic.com/static/assets/logos/RARE.png",
+    "FLOKI": "https://bin.bnbstatic.com/static/assets/logos/FLOKI.png",
+    "SYS": "https://bin.bnbstatic.com/static/assets/logos/SYS.png",
+    "FET": "https://bin.bnbstatic.com/static/assets/logos/FET.png",
+    "NOT": "https://bin.bnbstatic.com/static/assets/logos/NOT.png"
+};

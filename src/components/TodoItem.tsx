@@ -3,53 +3,27 @@ import { useTodo } from '../context/TodoContext';
 import { imageConfigDefault } from 'next/dist/shared/lib/image-config';
 import Image from 'next/image';
 
-const data = [
-        {
-            "name" : "BitCoin",
-            "price" : "$59,519.34",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/BTC.png"
-        },
-        {
-            "name" : "Ethereum",
-            "price" : "$2,650.13",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/ETH.png"
-        },
-        {
-            "name" : "TetherUS",
-            "price" : "$1.00",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/USDT.png"
-        },
-        {
-            "name" : "BNB",
-            "price" : "$536.60",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/BNB.png"
-        },
-        {
-            "name" : "Solana",
-            "price" : "$144.91",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/SOL.png"
-        },
-        {
-            "name" : "USD Coin",
-            "price" : "$0.9998",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/USDC.png"
-        },
-        {
-            "name" : "Ripple",
-            "price" : "$0.5709",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/XRP.png"
-        },
-        {
-            "name" : "TonCoin",
-            "price" : "$6.63",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/TON.png"
-        },
-        {
-            "name" : "DogeCoin",
-            "price" : "$0.10241",
-            "url": "https://bin.bnbstatic.com/static/assets/logos/DOGE.png"
-        }
-    ]
+const symbolToImag = [
+  ["BTC", "Bitcoin", "https://www.cryptocompare.com/media/37746251/btc.png?width=25"],
+  ["ETH", "Ethereum", "https://www.cryptocompare.com/media/37746238/eth.png?width=25"],
+  ["SOL", "Solana", "https://www.cryptocompare.com/media/37747734/sol.png?width=25"],
+  ["USDC", "USD Coin", "https://www.cryptocompare.com/media/34835941/usdc.png?width=25"],
+  ["XRP", "XRP", "https://www.cryptocompare.com/media/38553096/xrp.png?width=25"],
+  ["USDT", "Tether", "https://www.cryptocompare.com/media/37746338/usdt.png?width=25"],
+  ["PEPE", "Pepe", "https://www.cryptocompare.com/media/44082118/pepe.png?width=25"],
+  ["BNB", "Binance Coin", "https://www.cryptocompare.com/media/40485170/bnb.png?width=25"],
+  ["FDUSD", "First Digital USD", "https://www.cryptocompare.com/media/44154091/fdusd.png?width=25"],
+  ["DOGE", "Doge Coin", "https://www.cryptocompare.com/media/37746339/doge.png?width=25"],
+  ["TRX", "TRON", "https://www.cryptocompare.com/media/37746879/trx.png?width=25"],
+  ["WIF", "dogwifhat", "https://www.cryptocompare.com/media/44154324/wif.png?width=25"],
+  ["AAVE", "Aave", "https://www.cryptocompare.com/media/37747534/aave.png?width=25"],
+  ["SUI", "Sui", "https://www.cryptocompare.com/media/44082045/sui.png?width=25"],
+  ["RARE", "Super Rare", "https://www.cryptocompare.com/media/38554190/rare.png?width=25"],
+  ["FLOKI", "Floki Inu", "https://www.cryptocompare.com/media/38553226/floki.png?width=25"],
+  ["SYS", "Syscoin", "https://www.cryptocompare.com/media/39456587/sys.png?width=25"],
+  ["FET", "Fetch.AI", "https://www.cryptocompare.com/media/45576550/asi.png?width=25"],
+  ["NOT", "NotCoin", "https://www.cryptocompare.com/media/44613958/not.png?width=25"]
+]
 
 type Todo = {
   id: number;
@@ -82,8 +56,8 @@ function TodoItem({ todo }: TodoItemProps) {
       }`}
     >
 {
-    data.map((e) => {
-        if(e.name===todoMsg) return <ListItem imageurl={e.url} name={e.name} price={e.price}/>;
+    symbolToImag.map((e) => {
+        if(e[0]===todoMsg) return <ListItem imageurl={e[2]} name={e[1]}/>;
     })
 }
 

@@ -1,9 +1,15 @@
+"use client"
+
 import { Button, Divider, Group, HoverCard, NumberInput, Text, TextInput } from "@mantine/core";
 import { ethers } from "ethers";
 import { FormEvent } from "react";
 
+interface SendTokenProps {
+  name: string;
+}
 
-function SendToken() {
+function SendToken({ name }: SendTokenProps) {
+
     const connectWallet = async () => {
         if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
             try {
@@ -85,7 +91,7 @@ function SendToken() {
         variant="gradient"
         gradient={{ from: "purple", to: "blue", deg: 60 }}
       >
-        Connect Wallet
+        {name}
       </Button>
       </>
     )
