@@ -110,16 +110,6 @@ export function UsersStack() {
               position="bottom-end"
               withinPortal
             >
-              <Menu.Target>
-                <ActionIcon variant="subtle" color="gray">
-                  <IconDots style={{ width: rem(16), height: rem(16), color: 'black' }} stroke={1.5} />
-                </ActionIcon>
-              </Menu.Target>
-              <Menu.Dropdown>
-                <Menu.Item>
-                  Add to Watchlist
-                </Menu.Item>
-              </Menu.Dropdown>
             </Menu>
           </Group>
         </Table.Td>
